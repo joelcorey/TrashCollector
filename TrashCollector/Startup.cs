@@ -71,7 +71,7 @@ namespace TrashCollector
         private async Task CreateUserRoles(IServiceProvider serviceProvider)
         {
             var RoleManager = serviceProvider.GetRequiredService<RoleManager<IdentityRole>>();
-            //var UserManager = serviceProvider.GetRequiredService<UserManager<ApplicationUser>>();
+            var UserManager = serviceProvider.GetRequiredService<UserManager<ApplicationUser>>();
 
             IdentityResult roleResult;
             
@@ -96,10 +96,10 @@ namespace TrashCollector
                 roleResult = await RoleManager.CreateAsync(new IdentityRole("Customer"));
             }
 
-            //Assign Admin role to the main User here we have given our newly loregistered login id for Admin management  
-            //ApplicationUser user = await UserManager.FindByEmailAsync("joelcorey@fastmail.com");
-            //var User = new ApplicationUser();
-            //await UserManager.AddToRoleAsync(user, "Admin");
+            //Assign Admin role to the main User here we have given our newly loregistered login id for Admin management
+            ApplicationUser user = await UserManager.FindByEmailAsync("joelcorey@fastmail.com");
+            var User = new ApplicationUser();
+            await UserManager.AddToRoleAsync(user, "Admin");
 
         }
     }
