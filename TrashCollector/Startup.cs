@@ -63,13 +63,15 @@ namespace TrashCollector
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
+
+            // Comment out this line if re-doing migrations, then uncomment
             CreateUserRoles(services).Wait();
         }
 
         private async Task CreateUserRoles(IServiceProvider serviceProvider)
         {
             var RoleManager = serviceProvider.GetRequiredService<RoleManager<IdentityRole>>();
-            var UserManager = serviceProvider.GetRequiredService<UserManager<ApplicationUser>>();
+            //var UserManager = serviceProvider.GetRequiredService<UserManager<ApplicationUser>>();
 
             IdentityResult roleResult;
             
@@ -95,9 +97,9 @@ namespace TrashCollector
             }
 
             //Assign Admin role to the main User here we have given our newly loregistered login id for Admin management  
-            ApplicationUser user = await UserManager.FindByEmailAsync("joelcorey@fastmail.com");
-            var User = new ApplicationUser();
-            await UserManager.AddToRoleAsync(user, "Admin");
+            //ApplicationUser user = await UserManager.FindByEmailAsync("joelcorey@fastmail.com");
+            //var User = new ApplicationUser();
+            //await UserManager.AddToRoleAsync(user, "Admin");
 
         }
     }
