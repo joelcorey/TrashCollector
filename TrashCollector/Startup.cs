@@ -63,7 +63,7 @@ namespace TrashCollector
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
-            //CreateUserRoles(services).Wait();
+            CreateUserRoles(services).Wait();
         }
 
         private async Task CreateUserRoles(IServiceProvider serviceProvider)
@@ -76,32 +76,28 @@ namespace TrashCollector
             var roleCheckAdmin = await RoleManager.RoleExistsAsync("Admin");
             if (!roleCheckAdmin)
             {
-                //create the roles and seed them to the database  
                 roleResult = await RoleManager.CreateAsync(new IdentityRole("Admin"));
             }
             var roleCheckManager = await RoleManager.RoleExistsAsync("Manager");
             if (!roleCheckManager)
             {
-                //create the roles and seed them to the database  
                 roleResult = await RoleManager.CreateAsync(new IdentityRole("Manager"));
             }
             var roleCheckEmployee = await RoleManager.RoleExistsAsync("Employee");
             if (!roleCheckEmployee)
             {
-                //create the roles and seed them to the database  
                 roleResult = await RoleManager.CreateAsync(new IdentityRole("Employee"));
             }
             var roleCheckCustomer = await RoleManager.RoleExistsAsync("Customer");
             if (!roleCheckCustomer)
             {
-                //create the roles and seed them to the database  
                 roleResult = await RoleManager.CreateAsync(new IdentityRole("Customer"));
             }
 
             //Assign Admin role to the main User here we have given our newly loregistered login id for Admin management  
-            //ApplicationUser user = await UserManager.FindByEmailAsync("joelcorey@fastmail.com");
-            //var User = new ApplicationUser();
-            //await UserManager.AddToRoleAsync(user, "Admin");
+            ApplicationUser user = await UserManager.FindByEmailAsync("joelcorey@fastmail.com");
+            var User = new ApplicationUser();
+            await UserManager.AddToRoleAsync(user, "Admin");
 
         }
     }
