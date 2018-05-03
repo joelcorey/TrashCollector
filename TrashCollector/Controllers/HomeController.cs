@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using TrashCollector.Models;
 
@@ -11,7 +10,6 @@ namespace TrashCollector.Controllers
 {
     public class HomeController : Controller
     {
-        [Authorize(Roles = "Admin, Manager, Employee, Customer")]
         public IActionResult Index()
         {
             return View();

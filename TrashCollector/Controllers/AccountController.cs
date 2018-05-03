@@ -224,7 +224,6 @@ namespace TrashCollector.Controllers
                 var result = await _userManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
-                    //result = await _userManager.AddToRoleAsync(user.Id, model.Customer);
                     _logger.LogInformation("User created a new account with password.");
 
                     var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
